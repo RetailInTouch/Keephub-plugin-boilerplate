@@ -28,7 +28,7 @@ const App = () => {
 		<ReduxProvider store={store}>
             <PersistGate persistor={persistor}>
 
-                <KeephubProvider>
+                <KeephubProvider onBeforeLift={ onBeforeLift }>
                     <KeephubRouter>
 
                         <Switch>

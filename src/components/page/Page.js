@@ -22,7 +22,7 @@ const Page = ({ children, style, ...rest_props }) => {
             window.removeEventListener('resize', updateHeight);
         }
 
-    }, []);
+    }, [ bridge ]);
 
     const page_style = {
         paddingTop: 20,
