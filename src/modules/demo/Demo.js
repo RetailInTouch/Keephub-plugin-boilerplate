@@ -17,7 +17,7 @@ const Demo = () => {
     const { user, userGroups, languages, bridge, orgunits: orgUnits } = useKeephub();
     const history = useHistory();
 
-    const { name, email, groups=[], orgunits=[] } = user;
+    const { name, email, groups=[], orgunits=[], preferredLanguage } = user?.user ?? user; // user.user fix
 
     const navigateVnext = () => {
         bridge.navigate('home');
@@ -47,8 +47,13 @@ const Demo = () => {
                             {
                                 groups.map((group, index) => {
                                     const { name } = userGroups[group];
+
+                                    if (name[preferredLanguage]) {
+                                        return <Typography key={index}>{ name[preferredLanguage] }</Typography>
+                                    }else {
+                                        return <Typography key={index}>No translation</Typography>
+                                    }
                         
-                                    return <Typography key={index}>{ name }</Typography>
                                 })
                             }
                         </div>
@@ -58,8 +63,9 @@ const Demo = () => {
                             {
                                 orgunits.map((unit, index) => {
                                     const { name } = orgUnits[unit];
-                        
-                                    return <Typography key={index}>{ name }</Typography>
+                   
+                                    return <Typography key={index}>{ name}</Typography>
+                              
                                 })
                             }
                         </div>
